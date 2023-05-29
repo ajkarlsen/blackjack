@@ -21,7 +21,15 @@
         <button id="new-card-but" onclick="newCard()">HIT</button>
         <button id="new-card-but" onclick="dealerTurn()">STAND</button>
       </div>
-      <button id="new-game-but" onclick="newGame()">NEW GAME</button>
+      <div id="bets">
+        <p id="bet-title">BETS</p>
+        <button id="new-game-but" onclick="newGame(10)">10</button>
+        <button id="new-game-but" onclick="newGame(20)">20</button>
+        <button id="new-game-but" onclick="newGame(50)">50</button>
+        <button id="new-game-but" onclick="newGame(100)">100</button>
+        <button id="new-game-but" onclick="newGame(200)">200</button>
+
+      </div>
       <p id="player-el">$</p>
       <script src="index.js"></script>
     </body>

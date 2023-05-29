@@ -9,26 +9,37 @@ let dealerCardEl = document.getElementById("dealer-card-el")
 let playerSumEl = document.getElementById("player-sum-el")
 let dealerSumEl = document.getElementById("dealer-sum-el")
 let messageEl = document.getElementById("message-el")
+let chips = 150
+let chipsEl = document.getElementById("player-el")
+chipsEl.textContent = "$" + chips
+let bets = 0
 
 let player = {
     name: "Alex",
     cash: "12"
 }
 
-function newGame() {
+function newGame(money) {
     if (isAlive === false || hasBlackJack === true) {
+        if (chips >= money) {
+        bets = money
+        chips -= bets
+        chipsEl.textContent = "$" + chips
         isAlive = true
         playerCards = []
         dealerCards = []
-        card1 = getRandomCard(0)
+        card1 = getRandomCard()
         playerSum = card1
-        card2 = getRandomCard(playerSum)
+        card2 = getRandomCard()
         playerSum += card2
         playerCards.push(card1, card2)
         dealerCards.push(getRandomCard(0))
         dealerSum = dealerCards[0]
 
-         renderGame()
+        renderGame()
+        } else {
+            messageEl.textContent = "Not enough money"
+        }
     }
 }
 
@@ -51,12 +62,15 @@ function renderGame() {
     } else if (playerSum === 21 && playerCards.length === 2) {
         isAlive = false
         messageEl.textContent = "Blackjack, 1.5 times your money back"
+        chips += bets + (bets*1.5)
+
     } else if (playerSum === 21) {
         messageEl.textContent = "Dealer playing"
         dealerTurn()
     } else {
         messageEl.textContent = "New card?"
     }
+    chipsEl.textContent = "$" + chips
 }
 
 function newCard() {
@@ -97,13 +111,18 @@ async function dealerTurn() {
         }
         if (dealerSum > 21) {
             messageEl.textContent = "Dealer busts, you won"
+            chips += bets*2
         } else if (dealerSum > playerSum) {
             messageEl.textContent = "Dealer wins"
         } else if (dealerSum === playerSum) {
             messageEl.textContent = "Stand off, money back"
+            chips += bets
         } else {
             messageEl.textContent = "You win"
-        }
+            chips += bets*2
+        }     
+        chipsEl.textContent = "$" + chips
+
     }
 }
 
