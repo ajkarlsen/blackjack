@@ -45,7 +45,7 @@ function renderGame() {
     for (let i = 0; i < dealerCards.length; i++) {
         dealerCardEl.textContent += " " + dealerCards[i]
     }
-    if (playerSum > 21) {
+    if (playerSum > 21) { 
         isAlive = false
         messageEl.textContent = "You're out, play again?"
     } else if (playerSum === 21 && playerCards.length === 2) {
@@ -79,7 +79,8 @@ function newCard() {
 async function dealerTurn() {
     if (isAlive === true) {
         isAlive = false
-        while (dealerSum < playerSum && dealerSum < 17) {
+        while (dealerSum <= playerSum && dealerSum < 17) {
+            messageEl.textContent = "Dealer playing"
             await wait(1000);
             let newCard = getRandomCard(dealerSum)
             dealerCards.push(newCard)
@@ -108,7 +109,6 @@ async function dealerTurn() {
 
 function getRandomCard(sum) {
     let randomNumber = Math.ceil(Math.random() * 13)
-    console.log(playerSum + "," + dealerSum)
     if (randomNumber === 1 && sum + 11 <= 21) {
         return 11
     } else if (randomNumber === 1 && sum + 11 > 21) {
