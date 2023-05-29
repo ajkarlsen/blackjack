@@ -53,3 +53,9 @@ button {
     font-size: 20px;
     font-weight: bold;
 }
+
+#custom-bet {
+    font-size: 16px;
+    padding: 5px;
+    margin-top: 10px;
+}

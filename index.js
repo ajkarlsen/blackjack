@@ -28,9 +28,9 @@ function newGame(money) {
         isAlive = true
         playerCards = []
         dealerCards = []
-        card1 = getRandomCard()
+        card1 = getRandomCard(0)
         playerSum = card1
-        card2 = getRandomCard()
+        card2 = getRandomCard(playerSum)
         playerSum += card2
         playerCards.push(card1, card2)
         dealerCards.push(getRandomCard(0))
